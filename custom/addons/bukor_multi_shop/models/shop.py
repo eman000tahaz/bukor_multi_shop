@@ -17,9 +17,9 @@ class ProductProductInherit(models.Model):
 
 	@api.one
 	def _get_shop_id(self):
-		if 'default_shop_id' in self.env.context:
-			if self.env.context.default_shop_id:
-				return self.env.context.default_shop_id
+		if 'default_shop_id' in self._context:
+			if self._context['default_shop_id']:
+				return self._context['default_shop_id']
 
 	shop_id = fields.Many2one('shop', string='Shop', default=_get_shop_id)
 
