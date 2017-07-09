@@ -15,13 +15,13 @@ class Shop(models.Model):
 class ProductProductInherit(models.Model):
 	_inherit = 'product.product'
 
-	@api.one
-	def _get_shop_id(self):
-		if 'default_shop_id' in self._context:
-			if self._context['default_shop_id']:
-				return self._context['default_shop_id']
-
-	shop_id = fields.Many2one('shop', string='Shop', default=_get_shop_id)
+	# @api.one
+	# def _get_shop_id(self):
+	# 	if 'default_shop_id' in self._context:
+	# 		if self._context['default_shop_id']:
+	# 			return self._context['default_shop_id']
+	# , default=_get_shop_id
+	shop_id = fields.Many2one('shop', string='Shop')
 
 class AccountJournalInherit(models.Model):
 	_inherit = 'account.journal'
