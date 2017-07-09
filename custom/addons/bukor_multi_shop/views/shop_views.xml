@@ -15,7 +15,7 @@
                             <label for='name' string='Name'/>
 	            			<h3><field name='name' string='Name' placeholder='Shop Name' required="1"/></h3>
                             <label for='shop_type' string='Type'/>
-	            			<h3><field name='shop_type' string='Type' placeholder='Shop Type' required="1"/></h3>
+	            			<h3><field name='shop_type' string='Type'  required="1"/></h3>
                         </div>
                         <field name='id' invisible="1"/>
 	            		<notebook>

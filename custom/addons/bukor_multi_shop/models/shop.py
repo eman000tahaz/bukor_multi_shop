@@ -15,6 +15,7 @@ class Shop(models.Model):
 class ProductProductInherit(models.Model):
 	_inherit = 'product.product'
 
+	@api.one
 	def _get_shop_id(self):
 		if 'default_shop_id' in self.env.context:
 			if self.env.context.default_shop_id:
