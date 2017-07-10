@@ -27,10 +27,10 @@
     	<!-- Shop Manager Rule -->
     	<record id="shop_manager_see_all_shops" model="ir.rule">
             <field name="name">Shop Manager See All Shops</field>
-            <field name="model_id" ref="bukor_multi_shop.model_shop"/>
+            <field name="model_id" ref="bu_multi_shop.model_shop"/>
             <field name="global" eval="False"/>
             <field name="domain_force">[]</field>
-            <field name="groups" eval="[(6, 0, [ref('bukor_multi_shop.group_shop_manager')])]"/>
+            <field name="groups" eval="[(6, 0, [ref('bu_multi_shop.group_shop_manager')])]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_unlink" eval="True"/>
@@ -40,10 +40,10 @@
     	<!-- Shop Users Rule -->
     	<record id="shop_user_see_his_shop" model="ir.rule">
             <field name="name">Shop User See His Shop Only</field>
-            <field name="model_id" ref="bukor_multi_shop.model_shop"/>
+            <field name="model_id" ref="bu_multi_shop.model_shop"/>
             <field name="global" eval="False"/>
             <field name="domain_force">[('id','=', user.shop_id.id)]</field>
-            <field name="groups" eval="[(6, 0, [ref('bukor_multi_shop.group_shop_user')])]"/>
+            <field name="groups" eval="[(6, 0, [ref('bu_multi_shop.group_shop_user')])]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_unlink" eval="False"/>
@@ -56,7 +56,7 @@
             <field name="model_id" ref="product.model_product_product"/>
             <field name="global" eval="False"/>
             <field name="domain_force">[('shop_id.id','=', user.shop_id.id)]</field>
-            <field name="groups" eval="[(6, 0, [ref('bukor_multi_shop.group_shop_user')])]"/>
+            <field name="groups" eval="[(6, 0, [ref('bu_multi_shop.group_shop_user')])]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_unlink" eval="True"/>
