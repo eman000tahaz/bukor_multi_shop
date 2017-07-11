@@ -12,10 +12,32 @@ class Shop(models.Model):
 	journal_ids = fields.One2many('account.journal', 'shop_id', string='Journals', store=True)
 	image = fields.Binary('Image')
 
+
+
 class ProductProductInherit(models.Model):
 	_inherit = 'product.product'
 
 	shop_id = fields.Many2one('shop', string='Shop')
+	shop_type = fields.Selection([('store', 'Store'), ('restaurant', 'Restaurant')], 
+		related='shop_id.shop_type')
+	food_type = fields.Selection([
+		('sandwich', 'Sandwich'), 
+		('box', 'Box'), 
+		('creep', 'Creep'), 
+		('drink', 'Drink'),
+		('dessert', 'Dessert'),
+		('pizza', 'Pizza')], string='Food Type')
+	basic = fields.Selection([('chicken', 'Chicken'), ('beef', 'Beef')], string='Basic')
+	drink_type = fields.Selection([
+		('s_drink', 'Soft Drinks'),
+		('water', 'Water'),
+		('juice', 'Juice')], string='Drink Type')
+	size = fields.Selection([('large', 'Large'), ('small', 'Small')], string='Size')
+	lettuce = fields.Boolean(string='Lettuce')
+	tomato = fields.Boolean(string='Tomatoes')
+	onion = fields.Boolean(string='Onions')
+	bread = fields.Boolean(string='Bread')
+	meal = fields.Boolean(string='Is Meal')
 
 class AccountJournalInherit(models.Model):
 	_inherit = 'account.journal'

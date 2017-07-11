@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<!-- Form Views -->
+    	<!-- Product Form View -->
+	    <record id="product_normal_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="mode">primary</field>
+            <field eval="6" name="priority"/>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <!-- ADD Shop to product form -->
+            	<field name='name' position='after'>
+            		<br></br>
+            		<label class="oe_edit_only" for="shop_id" string='Shop'/>
+            		<field name='shop_id' required="1" widget="selection"/>
+            		<field name='shop_type' invisible="1"/>
+            	</field>
+                <!-- ADD new page for restuarants-->
+            	<page name='general_information' position='after'>
+            		<page string='Description' name='desc' attrs="{'invisible': [('shop_type', '!=', 'restaurant')]}"  autofocus="autofocus">
+            			<group>
+            				<field name='food_type' string='Food Type'/>
+            				<field name='size' string='Size'/>
+            			</group>
+            			<group string='Components' attrs="{'invisible': ['|','|',('food_type', '=', 'drink'), ('food_type', '=', 'dessert'), ('food_type', '=', 'box')]}" col="12">
+                            <group colspan="12">
+                                <group>
+                                    <field name='meal' string='Is Meal'/>
+                                </group>
+                                <group>
+                                    <field name='basic' string='Basic' widget='radio' options="{'horizontal': true}"/>
+                                </group>
+                            </group>
+                            <group colspan="12">
+                                <group>
+                                    <field name='bread' string='Bread'/>
+                                    <field name='lettuce' string='Lettuce'/>
+                                </group>
+                                <group>
+                                    <field name='tomato' string='Tomatoes'/>
+                                    <field name='onion' string='Onions'/>
+                                </group>
+                            </group>
+            			</group>
+            			<group attrs="{'invisible': [('food_type', '!=', 'drink')]}">
+            				<field name='drink_type' string='Drink Type'/>
+            			</group>
+            		</page>
+            	</page>
+                <!-- Hide Some fields from general information page -->
+                <!-- Hide type -->
+                <field name='type' position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </field>
+                <!-- Hide internal category -->
+                <field name='categ_id' position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </field>
+                <!-- Hide barcode -->
+                <field name='barcode' position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </field>
+                <!-- Hide internal reference -->
+                <field name='default_code' position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </field>
+                <group name='group_general' position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </group>
+                <group name="group_standard_price" position='attributes'>
+                    <attribute name='colspan'>6</attribute>
+                </group>
+                <!-- Change product name to be Name -->
+                <field name='name' position='attributes'>
+                    <attribute name='placeholder'>Name</attribute>
+                </field>
+                <xpath expr="//label" position='attributes'>
+                    <attribute name='string'>Name</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        
+
+        <!-- remove invoicing page from product form view -->
+        <record id="product_template_form_view_acc" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="priority">4</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <page name='invoicing' position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </page>
+            </field>
+        </record>
+
+        <!-- remove inventory page from product form view -->
+        <record id="view_template_property_form_sto" model="ir.ui.view">
+            <field name="name">product.template.stock.property.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_template_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[2]" position='attributes'>
+                    <attribute name='invisible'>"1"</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

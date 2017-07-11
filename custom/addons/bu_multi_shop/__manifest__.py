@@ -10,6 +10,7 @@
         'security/shop_security.xml',
         'security/ir.model.access.csv',
         'views/shop_views.xml',
+        'views/product_views.xml',
     ],
     'demo': [
     ],

@@ -34,22 +34,6 @@
 	        </field>
 	    </record>
 
-	    <!-- Product Form View -->
-	    <record id="product_normal_form_view_inherit" model="ir.ui.view">
-            <field name="name">product.product.form</field>
-            <field name="model">product.product</field>
-            <field name="mode">primary</field>
-            <field eval="6" name="priority"/>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
-            <field name="arch" type="xml">
-            	<field name='name' position='after'>
-            		<br></br>
-            		<label class="oe_edit_only" for="shop_id" string='Shop'/>
-            		<field name='shop_id' required="1" widget="selection"/>
-            	</field>
-            </field>
-        </record>
-
         <!-- Users Form View-->
         <record id="view_users_form_inherit" model="ir.ui.view">
             <field name="name">res.users.form</field>
@@ -127,12 +111,12 @@
         </record>
 
         <!-- Product form view action -->
-        <record id="product_action_form" model="ir.actions.act_window.view">
+      <!--   <record id="product_action_form" model="ir.actions.act_window.view">
             <field eval="0" name="sequence"/>
             <field name="view_mode">form</field>
             <field name="view_id" ref="product_normal_form_view_inherit"/>
             <field name="act_window_id" ref="product.product_normal_action"/>
-        </record>
+        </record> -->
 
         <!-- Shop MenuItems -->
         <menuitem id='shop_parent_menu' name='Shops'/>
