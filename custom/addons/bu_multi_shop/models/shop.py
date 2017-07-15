@@ -38,6 +38,12 @@ class ProductProductInherit(models.Model):
 	onion = fields.Boolean(string='Onions')
 	bread = fields.Boolean(string='Bread')
 	meal = fields.Boolean(string='Is Meal')
+	ka_sauce = fields.Boolean(string='ketchup')
+	hot_sauce = fields.Boolean(string='Hot Sauce')
+	mayo = fields.Boolean(string='Mayonnaise')
+	mustard = fields.Boolean(string='Mustard')
+	garlic = fields.Boolean(string='Garlic')
+	
 
 class AccountJournalInherit(models.Model):
 	_inherit = 'account.journal'
