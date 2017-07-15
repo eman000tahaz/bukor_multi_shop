@@ -44,6 +44,23 @@
                                 </group>
                             </group>
             			</group>
+                        <group string='Sauce' attrs="{'invisible': ['|','|',('food_type', '=', 'drink'), ('food_type', '=', 'dessert')]}" col="12">
+                            <group colspan="12">
+                                <group>
+                                    <field name='ka_sauce' string='Ketchap'/>
+                                    <field name='hot_sauce' string='Hot Sauce'/>
+                                </group>
+                                <group>
+                                    <field name='mayo' string='Mayonnaise'/>
+                                    <field name='mustard' string='Mustard'/>
+                                </group>
+                            </group>
+                            <group colspan="12">
+                                <group>
+                                    <field name='garlic' string='Garlic'/>
+                                </group>
+                            </group>
+                        </group>
             			<group attrs="{'invisible': [('food_type', '!=', 'drink')]}">
             				<field name='drink_type' string='Drink Type'/>
             			</group>
