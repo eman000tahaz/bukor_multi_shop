@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Actions -->
+	<record id="action_report_shop_order_details" model="ir.actions.act_window">
+        <field name="name">Shop Sale Details</field>
+        <field name="res_model">shop.order.details.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+	<!-- MenuItem -->
+	<menuitem id='acc_report_menu' name='Accounting'/>
+	<menuitem id='report_menu' name='Report' parent='acc_report_menu'/>
+	<menuitem id='shop_order_details_menu' name='Shop Orders' parent='report_menu' action='action_report_shop_order_details' sequence='4' groups="group_hide_all"/>
+
+	<!-- ADD Orders to new menuitem -->
+	<record id="point_of_sale.menu_report_pos_order_all" model="ir.ui.menu">
+        <field name="parent_id" ref="report_menu"/>
+        <field name="group_id" ref="group_account_manager"/>
+    </record>
+
+    <!-- ADD Sales Details to new menuitem -->
+    <record id="point_of_sale.menu_report_order_details" model="ir.ui.menu">
+        <field name="parent_id" ref="report_menu"/>
+        <field name="group_id" ref="group_account_manager"/>
+    </record>
+</odoo>
