@@ -11,7 +11,7 @@ class Shop(models.Model):
 	product_ids = fields.One2many('product.product', 'shop_id', string='Products', store=True)
 	journal_ids = fields.One2many('account.journal', 'shop_id', string='Journals', store=True)
 	image = fields.Binary('Image')
-
+	pos_ids = fields.One2many('pos.config', 'shop_id', string='Points Of Sale', store=True)
 
 
 class ProductProductInherit(models.Model):
@@ -68,3 +68,18 @@ class PosOrderLineInherit(models.Model):
         	node.set('domain', "[('shop_id', '=',"+current_user.shop_id.id+")]")
         res['arch'] = etree.tostring(doc)
         return res
+
+class PosConfigInherit(models.Model):
+	_inherit = "pos.config"
+
+	shop_id = fields.Many2one('shop', string='Shop')
+
+class PosOrderInherit(models.Model):
+	_inherit = "pos.order"
+
+	def _get_shop_id(self):
+		current_user = self.env['res.users'].search([('id', '=', self.env.uid)])
+		if current_user.shop_id:
+			return current_user.shop_id.id
+
+	shop_id = fields.Many2one('shop', string='Shop', default=_get_shop_id)

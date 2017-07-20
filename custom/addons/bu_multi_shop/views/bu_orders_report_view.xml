@@ -8,10 +8,18 @@
         <field name="target">new</field>
     </record>
 
+    <record id="action_report_user_order_details" model="ir.actions.act_window">
+        <field name="name">User Sale Details</field>
+        <field name="res_model">user.order.details.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
 	<!-- MenuItem -->
 	<menuitem id='acc_report_menu' name='Accounting'/>
 	<menuitem id='report_menu' name='Report' parent='acc_report_menu'/>
-	<menuitem id='shop_order_details_menu' name='Shop Orders' parent='report_menu' action='action_report_shop_order_details' sequence='4' groups="group_hide_all"/>
+	<menuitem id='shop_order_details_menu' name='Shop Orders' parent='report_menu' action='action_report_shop_order_details' sequence='4' groups=""/>
+    <menuitem id='user_order_details_menu' name='User Orders' parent='report_menu' action='action_report_user_order_details' sequence='5'/>
 
 	<!-- ADD Orders to new menuitem -->
 	<record id="point_of_sale.menu_report_pos_order_all" model="ir.ui.menu">

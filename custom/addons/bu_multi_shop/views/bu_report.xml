@@ -7,4 +7,12 @@
 	        <field name="report_type">qweb-pdf</field>
 	        <field name="report_name">bu_multi_shop.report_shop_saledetails</field>
 	    </record>
+
+	    <record id="user_sale_details_report" model="ir.actions.report.xml">
+	        <field name="name">User Sale Details</field>
+	        <field name="model">report.bu_multi_shop.details</field>
+	        <field name="report_type">qweb-pdf</field>
+	        <field name="report_name">bu_multi_shop.report_user_saledetails</field>
+	    </record>
+
 	</odoo>

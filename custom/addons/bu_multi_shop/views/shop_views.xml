@@ -22,6 +22,9 @@
 	            			<page string="Products">
 	            				<field name='product_ids' widget='many2many_kanban'/>
 	            			</page>
+                            <page string="Points of Sale">
+                                <field name='pos_ids' widget='many2many'/>
+                            </page>
 	            			<page string="Journals">
 	            				<field name='journal_ids' widget='many2many'/>
 	            			</page>

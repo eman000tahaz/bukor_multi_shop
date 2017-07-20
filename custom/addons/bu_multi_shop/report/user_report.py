@@ -1,17 +1,16 @@
 from openerp import api, models
 from odoo import api, fields, models
 
-class ReportSaleDetails(models.AbstractModel):
 
-    _name = 'report.bu_multi_shop.report_shop_saledetails'
+class ReportUserSaleDetails(models.AbstractModel):
+
+    _name = 'report.bu_multi_shop.report_user_saledetails'
 
     @api.model
-    def get_sale_details(self, date_start=False, date_stop=False, shop_id=False):
+    def get_sale_details(self, date_start=False, date_stop=False, user_id=False):
 
-        if not shop_id:
-            current_user = self.env['res.users'].search([('id', '=', self.env.uid)])
-            if current_user.shop_id:
-                shop_id = current_user.shop_id.id
+        if not user_id:
+            self.env.uid
 
         if date_start:
             date_start = fields.Datetime.from_string(date_start)
@@ -26,7 +25,8 @@ class ReportSaleDetails(models.AbstractModel):
             ('date_order', '>=', date_start),
             ('date_order', '<=', date_stop),
             ('state', 'in', ['paid','invoiced','done']),
-            ('shop_id', '=', shop_id)])
+            ('user_id', '=', user_id)
+            ])
 
         user_currency = self.env.user.company_id.currency_id
 
@@ -72,6 +72,7 @@ class ReportSaleDetails(models.AbstractModel):
             'payments': payments,
             'company_name': self.env.user.company_id.name,
             'taxes': taxes.values(),
+            'user': self.env['res.users'].search([('id', '=', user_id)]),
             'products': sorted([{
                 'product_id': product.id,
                 'product_name': product.name,
@@ -86,6 +87,6 @@ class ReportSaleDetails(models.AbstractModel):
     @api.multi
     def render_html(self, docids, data=None):
         data = dict(data or {})
-        shop_id = self.env['shop'].browse(data['shop_id']).id
-        data.update(self.get_sale_details(data['date_start'], data['date_stop'], shop_id))
-        return self.env['report'].render('bu_multi_shop.report_shop_saledetails', data)
+        user_id = self.env['res.users'].browse(data['user_id']).id
+        data.update(self.get_sale_details(data['date_start'], data['date_stop'], user_id))
+        return self.env['report'].render('bu_multi_shop.report_user_saledetails', data)
