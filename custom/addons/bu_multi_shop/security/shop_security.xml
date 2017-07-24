@@ -51,7 +51,7 @@
 
     	<!-- Rules -->
     	<!-- Shop -->
-    	<!-- Shop Manager Rule -->
+    	<!-- Shop Manager Rule For shop -->
     	<record id="shop_manager_see_all_shops" model="ir.rule">
             <field name="name">Shop Manager See All Shops</field>
             <field name="model_id" ref="bu_multi_shop.model_shop"/>
@@ -64,7 +64,7 @@
             <field name="perm_create" eval="True"/>
         </record>
 
-    	<!-- Shop Users Rule -->
+    	<!-- Shop Users Rule For shop -->
     	<record id="shop_user_see_his_shop" model="ir.rule">
             <field name="name">Shop User See His Shop Only</field>
             <field name="model_id" ref="bu_multi_shop.model_shop"/>
@@ -76,6 +76,19 @@
             <field name="perm_unlink" eval="False"/>
             <field name="perm_create" eval="False"/>
         </record>
+
+        <!-- Shop Users Rule For shop -->
+        <record id="shop_user_see_his_pos" model="ir.rule">
+            <field name="name">Shop User See His pos Only</field>
+            <field name="model_id" ref="bu_multi_shop.model_pos_config"/>
+            <field name="global" eval="False"/>
+            <field name="domain_force">[('shop_id','=', user.shop_id.id)]</field>
+            <field name="groups" eval="[(6, 0, [ref('bu_multi_shop.group_shop_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_create" eval="False"/>
+        </record>        
 
         <!-- Products -->
 		<record id="shop_user_see_his_products" model="ir.rule">
