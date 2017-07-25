@@ -43,7 +43,9 @@ class ProductProductInherit(models.Model):
 	mayo = fields.Boolean(string='Mayonnaise')
 	mustard = fields.Boolean(string='Mustard')
 	garlic = fields.Boolean(string='Garlic')
-	
+	tast = fields.Selection([('spicy', 'Spicy'), ('normal', 'Normal')], string='Tast')
+	extra_souce = fields.Boolean(string='Extra Souce')
+	cheese = fields.Boolean(string='Cheese')
 
 class AccountJournalInherit(models.Model):
 	_inherit = 'account.journal'
