@@ -16,7 +16,7 @@
     </record>
 
 	<!-- MenuItem -->
-	<menuitem id='acc_report_menu' name='Accounting'/>
+	<menuitem id='acc_report_menu' name='Accounting' groups="group_account_user"/>
 	<menuitem id='report_menu' name='Report' parent='acc_report_menu'/>
 	<menuitem id='shop_order_details_menu' name='Shop Orders' parent='report_menu' action='action_report_shop_order_details' sequence='4' groups="group_account_user"/>
     <menuitem id='user_order_details_menu' name='User Orders' parent='report_menu' action='action_report_user_order_details' sequence='5' groups="group_account_user"/>
@@ -24,12 +24,12 @@
 	<!-- ADD Orders to new menuitem -->
 	<record id="point_of_sale.menu_report_pos_order_all" model="ir.ui.menu">
         <field name="parent_id" ref="report_menu"/>
-        <field name="group_id" ref="group_account_manager"/>
+        <field name="gid" ref="group_account_manager"/>
     </record>
 
     <!-- ADD Sales Details to new menuitem -->
     <record id="point_of_sale.menu_report_order_details" model="ir.ui.menu">
         <field name="parent_id" ref="report_menu"/>
-        <field name="group_id" ref="group_account_manager"/>
+        <field name="gid" ref="group_account_manager"/>
     </record>
 </odoo>
