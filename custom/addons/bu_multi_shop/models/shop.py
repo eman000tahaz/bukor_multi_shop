@@ -26,7 +26,8 @@ class ProductProductInherit(models.Model):
 		('creep', 'Creep'), 
 		('drink', 'Drink'),
 		('dessert', 'Dessert'),
-		('pizza', 'Pizza')], string='Food Type')
+		('pizza', 'Pizza'),
+		('snacks', 'Snacks')], string='Food Type')
 	basic = fields.Selection([('chicken', 'Chicken'), ('beef', 'Beef')], string='Basic')
 	drink_type = fields.Selection([
 		('s_drink', 'Soft Drinks'),

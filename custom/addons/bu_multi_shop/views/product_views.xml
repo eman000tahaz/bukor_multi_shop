@@ -22,7 +22,9 @@
             		<page string='Description' name='desc' attrs="{'invisible': [('shop_type', '!=', 'restaurant')]}"  autofocus="autofocus">
             			<group>
             				<field name='food_type' string='Food Type'/>
+                            <field name='tast' string='Tast'/>
             				<field name='size' string='Size'/>
+                            <field name='cheese' string='Cheese'/>
             			</group>
             			<group string='Components' attrs="{'invisible': ['|','|',('food_type', '=', 'drink'), ('food_type', '=', 'dessert'), ('food_type', '=', 'box')]}" col="12">
                             <group colspan="12">
@@ -58,6 +60,7 @@
                             <group colspan="12">
                                 <group>
                                     <field name='garlic' string='Garlic'/>
+                                    <field name='extra_souce' string='Extra Souce'/>
                                 </group>
                             </group>
                         </group>
