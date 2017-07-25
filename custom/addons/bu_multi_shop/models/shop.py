@@ -23,7 +23,7 @@ class ProductProductInherit(models.Model):
 	food_type = fields.Selection([
 		('sandwich', 'Sandwich'), 
 		('box', 'Box'), 
-		('creep', 'Creep'), 
+		('creep', 'Crepe'), 
 		('drink', 'Drink'),
 		('dessert', 'Dessert'),
 		('pizza', 'Pizza'),
@@ -33,7 +33,7 @@ class ProductProductInherit(models.Model):
 		('s_drink', 'Soft Drinks'),
 		('water', 'Water'),
 		('juice', 'Juice')], string='Drink Type')
-	size = fields.Selection([('large', 'Large'), ('small', 'Small')], string='Size')
+	size = fields.Selection([('large', 'Large'), ('small', 'Small'), ('galon', 'Galon')], string='Size')
 	lettuce = fields.Boolean(string='Lettuce')
 	tomato = fields.Boolean(string='Tomatoes')
 	onion = fields.Boolean(string='Onions')
