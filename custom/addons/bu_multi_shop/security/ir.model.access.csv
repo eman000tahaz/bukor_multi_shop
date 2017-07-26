@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_shop_user,access_shop_user,model_shop,bu_multi_shop.group_shop_user,1,0,0,0
 access_shop_manager,access_shop_manager,model_shop,bu_multi_shop.group_shop_manager,1,1,1,1
+access_res_users,access_res_users,base.model_res_users,bu_multi_shop.group_like_admin,1,1,1,1

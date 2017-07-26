@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="base.menu_administration" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('bu_multi_shop.group_for_admin')])]"/>
+    </record>
+
+    <!-- Users Action-->
+    <record id="new_users_action" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="domain">[('id','!=',1)]</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="search_view_id" ref="base.view_users_search"/>
+        <field name="help">Create and manage users that will connect to the system. Users can be deactivated should there be a period of time during which they will/should not connect to the system. You can assign them groups in order to give them specific access to the applications they need to use in the system.</field>
+    </record>
+
+    <record id="users_tree_view_action" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_users_tree"/>
+        <field name="act_window_id" ref="new_users_action"/>
+    </record>
+
+    <record id="users_form_view_action" model="ir.actions.act_window.view">
+        <field eval="20" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_users_form"/>
+        <field name="act_window_id" ref="new_users_action"/>
+    </record>
+
+    <!-- res users form view -->
+    <record id="new_res_users_form_view" model="ir.ui.view">
+        <field name="name">res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="priority">25</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sel_groups_3_4']" position="attributes">
+                <attribute name="invisible">"1"</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sel_groups_26_27']" position="attributes">
+                <attribute name="invisible">"1"</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sel_groups_19_20_21']" position="attributes">
+                <attribute name="invisible">"1"</attribute>
+            </xpath>
+        </field>
+	</record>
+
+	<!-- Point Of Sale res users form view -->
+	<record id="pos_res_users_form_view" model="ir.ui.view">
+        <field name="name">pos.res.users.form.view</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="point_of_sale.res_users_form_view" />
+        <field name="arch" type="xml">
+            <field name="barcode" position="attributes">
+            	<attribute name='invisible'>"1"</attribute>
+            </field>
+            <field name="pos_security_pin" position="attributes">
+            	<attribute name='invisible'>"1"</attribute>
+            </field>
+        </field>
+    </record>
+
+
+
+	<!-- MenuItem -->
+	<menuitem id="users_parent_menu" name="Users" sequence="600"/>
+	<menuitem id="users_sub_menu" name="Users" parent="users_parent_menu"/>
+	<menuitem id="users_menu" name="Users" parent="users_sub_menu" action="new_users_action" groups="group_like_admin"/>
+	
+</odoo>

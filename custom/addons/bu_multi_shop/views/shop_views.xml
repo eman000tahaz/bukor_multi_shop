@@ -131,5 +131,20 @@
             <field name="parent_id" ref="product_menu"/>
         </record>
 
+        <record id="stock.menu_stock_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('bu_multi_shop.group_for_admin')])]"/>
+        </record>
+        <record id="account.menu_finance" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('bu_multi_shop.group_for_admin')])]"/>
+        </record>
+        <record id="point_of_sale.menu_pos_barcode_nomenclature_all" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('bu_multi_shop.group_for_admin')])]"/>
+        </record>
+        <record id="point_of_sale.menu_action_account_journal_form_open" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('bu_multi_shop.group_for_admin')])]"/>
+        </record>
+        
+        
+
     </data>
 </odoo>

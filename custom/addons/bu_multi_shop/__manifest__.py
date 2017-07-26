@@ -19,6 +19,7 @@
         'views/report_user_saledetails.xml',
         'views/bu_report.xml',
         'views/pos_config_views.xml',
+        'views/res_users_views.xml',
     ],
     'demo': [
     ],
