@@ -21,9 +21,11 @@
         'views/pos_config_views.xml',
         'views/res_users_views.xml',
         'views/pos_order_views.xml',
+        'views/bu_assets.xml',
     ],
     'demo': [
     ],
+    'qweb': ['static/src/xml/pos.xml'],
     'installable': True,
     'application': True,
     'Author': "Eman Taha"

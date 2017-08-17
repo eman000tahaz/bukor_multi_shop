@@ -86,4 +86,44 @@ class PosOrderInherit(models.Model):
 		if current_user.shop_id:
 			return current_user.shop_id.id
 
+	@api.model
+	def get_pos_ref(self):
+		current_user = self.env['res.users'].search([('id', '=', self.env.uid)])
+		if current_user.shop_id :
+			shop_id = current_user.shop_id.id
+			shop_name = current_user.shop_id.name
+			last_shop_order = self.env['pos.order'].search([('shop_id', '=', shop_id)], limit=1, order='id desc')
+			last_order = self.env['pos.order'].search([], limit=1, order='id desc')
+			pos_reference = 'Order '+ shop_name +"-"+ str(last_shop_order.id) +"-"+ str(last_order.id)
+		else:
+			last_order = self.env['pos.order'].search([], limit=1, order='id desc')
+			pos_reference = 'Order Manager' + "-" + str(last_order.id)
+		return pos_reference
+
+
 	shop_id = fields.Many2one('shop', string='Shop', default=_get_shop_id)
+	name = fields.Char(string='Order Ref', required=True, readonly=False, copy=False, default='/')
+	pos_reference = fields.Char(string='Receipt Ref', readonly=True, copy=False, default=get_pos_ref, store=True)
+
+	@api.model
+	def create(self, values):
+		if values.get('session_id'):
+			# set name based on the sequence specified on the config
+			session = self.env['pos.session'].browse(values['session_id'])
+			values['name'] = session.config_id.sequence_id._next()
+			current_user = self.env['res.users'].search([('id', '=', self.env.uid)])
+			if current_user.shop_id :
+				shop_id = current_user.shop_id.id
+				shop_name = current_user.shop_id.name
+				last_shop_order = self.env['pos.order'].search([('shop_id', '=', shop_id)], limit=1, order='id desc')
+				last_order = self.env['pos.order'].search([], limit=1, order='id desc')
+				values['pos_reference'] = 'Order '+ shop_name +"-"+ str(last_shop_order.id) +"-"+ str(last_order.id)
+			else:
+				last_order = self.env['pos.order'].search([], limit=1, order='id desc')
+				values['pos_reference'] = 'Order Manager' + "-" + str(last_order.id)
+			values.setdefault('pricelist_id', session.config_id.pricelist_id.id)
+		else:
+			# fallback on any pos.order sequence
+			values['name'] = self.env['ir.sequence'].next_by_code('pos.order')
+		return super(PosOrderInherit, self).create(values)
+	

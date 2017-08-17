@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="PosTicket" t-extend="PosTicket">
+        <t t-jquery='.pos-center-align' t-operation='replace'>
+            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/> <t t-esc="pos_ref"/></div>
+        </t>
+    </t>
+</templates>
