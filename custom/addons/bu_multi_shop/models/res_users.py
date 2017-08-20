@@ -10,3 +10,9 @@ class ResUsersSecondInherit(models.Model):
 		if user_count >= 13:
 			raise exceptions.ValidationError("You have exceeded the maximum number of users")
 		return super(ResUsersSecondInherit, self).create(values)
+
+	@api.multi
+	def write(self, values):
+		if 1 in self._ids and self.env.uid != 1:
+			raise exceptions.ValidationError("You have no access to edit Administrator!")
+		return super(ResUsersSecondInherit, self).write(values)

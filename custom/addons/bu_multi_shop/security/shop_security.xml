@@ -68,7 +68,7 @@
             <field name="name">Like Admin Create Users</field>
             <field name="model_id" ref="base.model_res_users"/>
             <field name="global" eval="False"/>
-            <field name="domain_force">[('id','!=', 1)]</field>
+            <field name="domain_force">[]</field>
             <field name="groups" eval="[(6, 0, [ref('bu_multi_shop.group_like_admin')])]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
