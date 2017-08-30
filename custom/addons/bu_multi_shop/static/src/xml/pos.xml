@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
+	<!-- ADD new Receipt sequance formate -->
 	<t t-name="PosTicket" t-extend="PosTicket">
         <t t-jquery='.pos-center-align' t-operation='replace'>
-            <div class="pos-center-align"><t t-esc="moment().format('L LT')"/> <t t-esc="pos_ref"/></div>
+            <div class="pos-center-align">
+            	<h5>Date : <t t-esc="moment().format('L LT')"/></h5>
+				<h5>Order Number : <t t-esc="pos_ref"/></h5>
+				<t t-if='shop_name === "Grilled like this"'>
+					<img src='/bu_multi_shop/static/src/img/grilled.png' style="width: 100%;"/>
+				</t>
+				<t t-if='shop_name === "Snacks"'>
+					<img src='/bu_multi_shop/static/src/img/snacks.png' style="width: 100%;"/>
+				</t>
+				<t t-if='shop_name === "Taybat Al-Khair"'>
+					<img src='/bu_multi_shop/static/src/img/tayb.png' style="width: 100%;"/>
+				</t>
+				<t t-if='shop_name === "Burger &amp; Feletto House"'>
+					<img src='/bu_multi_shop/static/src/img/burger.png' style="width: 100%;"/>
+				</t>
+				<t t-if="shop_name === 'Turk'">
+					<img src='/bu_multi_shop/static/src/img/turk.png' style="width: 100%;"/>
+				</t>
+			</div>
         </t>
     </t>
+
+
 </templates>

@@ -1410,8 +1410,8 @@ gui.define_screen({name:'clientlist', widget: ClientListScreenWidget});
 /*ADD model and order_model and pos_ref to change the reciep ref in the ticket .... Amy*/
 var model = require('web.Model');
 var order_model = new model('pos.order');
-order_model.call('get_pos_ref').then(function (pos_reference) { 
-    var pos_ref = pos_reference ;
+order_model.call('get_pos_ref').then(function (res) { 
+    var pos_ref = res.pos_reference ;
         
 var ReceiptScreenWidget = ScreenWidget.extend({
     template: 'ReceiptScreenWidget',
@@ -1536,6 +1536,7 @@ var ReceiptScreenWidget = ScreenWidget.extend({
                 orderlines: order.get_orderlines(),
                 paymentlines: order.get_paymentlines(),
                 pos_ref: pos_ref,
+                shop_name: res.shop_name, 
             }));
     },
 });
