@@ -10,7 +10,7 @@
 					<img src='/bu_multi_shop/static/src/img/grilled.png' style="width: 100%;"/>
 				</t>
 				<t t-if='shop_name === "Snacks"'>
-					<img src='/bu_multi_shop/static/src/img/snacks.png' style="width: 100%;"/>
+					<img src='/bu_multi_shop/static/src/img/snacks2.png' style="width: 100%;"/>
 				</t>
 				<t t-if='shop_name === "Taybat Al-Khair"'>
 					<img src='/bu_multi_shop/static/src/img/tayb.png' style="width: 100%;"/>
@@ -19,7 +19,7 @@
 					<img src='/bu_multi_shop/static/src/img/burger.png' style="width: 100%;"/>
 				</t>
 				<t t-if="shop_name === 'Turk'">
-					<img src='/bu_multi_shop/static/src/img/turk.png' style="width: 100%;"/>
+					<img src='/bu_multi_shop/static/src/img/turk2.png' style="width: 100%;"/>
 				</t>
 			</div>
         </t>
