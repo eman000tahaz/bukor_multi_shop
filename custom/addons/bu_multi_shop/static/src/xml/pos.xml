@@ -9,7 +9,7 @@
 				<t t-if='shop_name === "Grilled like this"'>
 					<img src='/bu_multi_shop/static/src/img/grilled.png' style="width: 100%;"/>
 				</t>
-				<t t-if='shop_name === "Snacks"'>
+				<t t-if='shop_name === "Snacks Truck"'>
 					<img src='/bu_multi_shop/static/src/img/snacks2.png' style="width: 100%;"/>
 				</t>
 				<t t-if='shop_name === "Taybat Al-Khair"'>
@@ -18,7 +18,7 @@
 				<t t-if='shop_name === "Burger &amp; Feletto House"'>
 					<img src='/bu_multi_shop/static/src/img/burger.png' style="width: 100%;"/>
 				</t>
-				<t t-if="shop_name === 'Turk'">
+				<t t-if="shop_name === 'Burger Truck'">
 					<img src='/bu_multi_shop/static/src/img/turk2.png' style="width: 100%;"/>
 				</t>
 			</div>
