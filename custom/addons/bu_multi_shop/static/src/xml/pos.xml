@@ -4,8 +4,10 @@
 	<t t-name="PosTicket" t-extend="PosTicket">
         <t t-jquery='.pos-center-align' t-operation='replace'>
             <div class="pos-center-align">
+            	<div style="border:3px solid black; width:80px; margin:0 auto;">
+            		<strong><t t-esc="customer_no"/></strong>
+            	</div>
             	<h5>Date : <t t-esc="moment().format('L LT')"/></h5>
-				<h5>Order Number : <t t-esc="pos_ref"/></h5>
 				<t t-if='shop_name === "Grilled like this"'>
 					<img src='/bu_multi_shop/static/src/img/grilled.png' style="width: 100%;"/>
 				</t>
@@ -23,6 +25,12 @@
 				</t>
 			</div>
         </t>
+        <!-- ADD pos_ref after change table -->
+        <t t-jquery='.receipt-change' t-operation='after'>
+        	<div>
+        		<h5>Order Number : <t t-esc="pos_ref"/></h5>
+			</div>
+		</t>
     </t>
 
 

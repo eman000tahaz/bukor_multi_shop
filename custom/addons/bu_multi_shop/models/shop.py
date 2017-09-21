@@ -96,23 +96,37 @@ class PosOrderInherit(models.Model):
 			shop_orders_count = self.env['pos.order'].search_count([('shop_id', '=', shop_id)])
 			last_order = self.env['pos.order'].search([], limit=1, order='id desc')
 			pos_reference = 'Order '+ shop_name +"-"+ str(shop_orders_count+1) +"-"+ str(last_order.id+1)
+			today_orders_count = self.env['pos.order'].search_count([('shop_id', '=', shop_id), ('today_date', '=', fields.Date.today())])
+			if not today_orders_count:
+				customer_order_no = 100
+			else:
+				customer_order_no = 100 + today_orders_count
 		else:
 			shop_name = False
 			last_order = self.env['pos.order'].search([], limit=1, order='id desc')
 			pos_reference = 'Order Manager' + "-" + str(last_order.id+1)
+			today_orders_count = self.env['pos.order'].search_count([('today_date', '=', fields.Date.today())])
+			if not today_orders_count:
+				customer_order_no = 200
+			else:
+				customer_order_no = 200 + today_orders_count
 		res['pos_reference'] = pos_reference
-		if shop_name == "Turk\'s Burger":
-			shop_name ='Turk'
+		res['customer_order_no'] = customer_order_no
 		res['shop_name'] = shop_name
+		# if shop_name == "Turk\'s Burger":
+		# 	shop_name ='Turk'
 		return res
 
 
 	shop_id = fields.Many2one('shop', string='Shop', default=_get_shop_id)
 	name = fields.Char(string='Order Ref', required=True, readonly=False, copy=False, default='/')
 	pos_reference = fields.Char(string='Receipt Ref', readonly=True, copy=False, store=True)
-
+	today_date = fields.Date(string='Date', default=fields.Date.today(), store=True)
+	customer_order_no = fields.Integer('Customer No.')
+	
 	@api.model
 	def create(self, values):
+		values['today_date'] = fields.Date.today()
 		if values.get('session_id'):
 			# set name based on the sequence specified on the config
 			session = self.env['pos.session'].browse(values['session_id'])
@@ -124,10 +138,19 @@ class PosOrderInherit(models.Model):
 				shop_orders_count = self.env['pos.order'].search_count([('shop_id', '=', shop_id)])
 				last_order = self.env['pos.order'].search([], limit=1, order='id desc')
 				values['pos_reference'] = 'Order '+ shop_name +"-"+ str(shop_orders_count+1) +"-"+ str(last_order.id+1)
-				print values
+				today_orders_count = self.env['pos.order'].search_count([('shop_id', '=', shop_id), ('today_date', '=', fields.Date.today())])
+				if not today_orders_count:
+					values['customer_order_no'] = 100
+				else:
+					values['customer_order_no'] = 100 + today_orders_count
 			else:
 				last_order = self.env['pos.order'].search([], limit=1, order='id desc')
 				values['pos_reference'] = 'Order Manager' + "-" + str(last_order.id+1)
+				today_orders_count = self.env['pos.order'].search_count([('today_date', '=', fields.Date.today())])
+				if not today_orders_count:
+					values['customer_order_no'] = 200
+				else:
+					values['customer_order_no'] = 200 + today_orders_count
 			values.setdefault('pricelist_id', session.config_id.pricelist_id.id)
 		else:
 			# fallback on any pos.order sequence
