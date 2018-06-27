@@ -5,7 +5,7 @@
     'category': 'Point Of Sale',
     'sequence': 20,
     'summary': 'Bukor Multi Print',
-    'depends': ['bu_multi_shop'],
+    'depends': ['pos_restaurant'],
     'data': [
             'security/bu_security.xml',
             'views/pos_config_views.xml',

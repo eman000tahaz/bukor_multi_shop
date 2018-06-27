@@ -11,4 +11,8 @@
         	</field>
         </field>
     </record>
+     <record id="point_of_sale.fruits_vegetables" model="pos.category">
+      <field name="name">Fruits and Vegetables</field>
+    </record>
+
 </odoo>
