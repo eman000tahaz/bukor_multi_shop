@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<!--     RESTAURANT PRINTERS     -->
+
+        <record id="view_restaurant_printer_form_inherit" model="ir.ui.view">
+            <field name="name">Order Printer</field>
+            <field name="model">restaurant.printer</field>
+            <field name="inherit_id" ref="pos_restaurant.view_restaurant_printer_form"/>
+            <field name="arch" type="xml">
+            	<group position="replace">
+            		<group>
+            			<group col="2">
+	                        <field name="name" />
+	                        <field name="proxy_ip" />
+	                        <field name="config_id" required="1"/>
+	                    </group>
+	                    <group>
+	                    	<field name="product_categories_ids" widget="many2many_tags"/>
+	                    </group>
+            		</group>
+            	</group>
+            </field>
+        </record>
+
+
+	    <record id="view_pos_config_form_inherit" model="ir.ui.view">
+	        <field name="name">pos.config.form.view.inherit</field>
+	        <field name="model">pos.config</field>
+	        <field name="inherit_id" ref="pos_restaurant.view_pos_config_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//group[6]" position="replace">
+	        		<group string="Bar &amp; Restaurant" invisible="1">
+	                    <field name="iface_splitbill" />
+	                    <field name="iface_printbill" />
+	                    <field name="iface_orderline_notes" />
+	                    <field name="floor_ids" />
+	                    <field name="printer_ids"/>
+	                </group>
+	                <!-- <notebook>
+                    	<page string="Internal Printers">
+                    		<field name="printer_ids"/>
+                    	</page>
+                    </notebook> -->
+	        	</xpath>
+	        </field>
+	    </record>
+	</data>
+</odoo>

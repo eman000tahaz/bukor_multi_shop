@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	
+
+	<t t-name="SubmitOrderButton" t-extend="SubmitOrderButton">
+        <t t-jquery='.control-button' t-operation='replace'>
+            <span class="control-button order-submit">
+	            <i class="fa fa-cutlery"></i>
+	            Send To Kitchen
+	        </span>
+        </t>
+    </t>
+
+    <t t-name="PrintBillButton" t-extend="PrintBillButton">
+        <t t-jquery='.control-button' t-operation='replace'>
+            <span class="control-button order-printbill">
+	            <i class="fa fa-print"></i>
+	            Reciept
+	        </span>
+        </t>
+    </t>
+
+    
+</templates>
